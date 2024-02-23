@@ -357,6 +357,7 @@ if (!isset($_SESSION["user"])) {
 
                     </table>
                 </div>
+            </div>
 
         </section>
 
@@ -416,26 +417,80 @@ if (!isset($_SESSION["user"])) {
             <div class="main--title--div">
                 <h3 class="main--title">Photography</h3>
             </div>
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Subject</th>
-                            <th>Message</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>John Doe</td>
-                            <td>john@example.com</td>
-                            <td>Query</td>
-                            <td>Hello, I have a question...</td>
-                        </tr>
-                    </tbody>
-                </table>
+
+            <div class="timeline-section">
+                <div class="form-container">
+                    <form action="../include/photography.inc.php" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <!-- <label for="name">University Name:</label> -->
+                            <input type="text" name="title" required placeholder="Tile">
+                        </div>
+                        <div class="form-group">
+                            <!-- <label for="email">Degree:</label> -->
+                            <input type="text" name="location" required placeholder="Location">
+                        </div>
+                        <div class="form-group">
+                            <label for="picture">Upload Images:</label>
+                            <input type="file" id="picture" name="picture" accept="image/*" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Upload">
+                        </div>
+                    </form>
+                </div>
             </div>
+
+            <div class="timeline-section">
+                <h2>Display Section</h2>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>SN</th>
+                                <th>Title</th>
+                                <th>Location</th>
+                                <th>Image</th>                               
+                                <th>Time</th>                               
+                                <th>Operations</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <?php
+
+                            include './dbconnect.inc.php';
+
+                            $sql = "SELECT * FROM `photography`";
+                            $result = mysqli_query($conn, $sql);
+
+                            if ($result) {
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    $id = $row['sn'];
+                                    $title = $row['title'];
+                                    $location = $row['location'];                                                                    
+                                    $image = $row['image'];
+                                    $time = $row['image'];
+
+                                    echo '<tr>
+                                        <th scope="row">' . $id . '</th>
+                                        <td>' . $title . '</td>
+                                        <td>' . $location . '</td>
+                                        <td>' . $image . '</td>
+                                        <td>' . $time . '</td>
+                                        <td>                                   
+                                        <button><a href="../crud/delete_photography.php ? deleteid=' . $id . '">Delete</a> </button>
+                                        </td>           
+                                        </tr>';
+                                }
+                            }
+                            ?>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+
         </section>
 
         <section id="message">

@@ -5,9 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Portfolio</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 
   <link rel="stylesheet" href="../css/style.css">
@@ -101,10 +99,8 @@
         </button>
       </div>
       <div id="socials-container">
-        <img src="../asset/github.png" alt="github profile" class="icon"
-          onclick="location.href='https://github.com/Efty34'" />
-        <img src="../asset/instagram.png" alt="instagram profile" class="icon"
-          onclick="location.href='https://www.instagram.com/__efty_hasan__/'" />
+        <img src="../asset/github.png" alt="github profile" class="icon" onclick="location.href='https://github.com/Efty34'" />
+        <img src="../asset/instagram.png" alt="instagram profile" class="icon" onclick="location.href='https://www.instagram.com/__efty_hasan__/'" />
       </div>
     </div>
   </section>
@@ -373,8 +369,7 @@
               </div>
               <h2 class="experience-sub-title project-title">Title: InFoo</h2>
               <div class="btn-container">
-                <button class="project-btn"
-                  onclick="location.href='https://github.com/Efty34/InFoo_AdvanceProgramming'">
+                <button class="project-btn" onclick="location.href='https://github.com/Efty34/InFoo_AdvanceProgramming'">
                   Github
                 </button>
                 <button class="project-btn" onclick="window.open('./asset/InfooPreview.mkv')">
@@ -411,10 +406,40 @@
       <p class="section__text__p1">Beyond the Journey </p>
       <h1 class="title">Photography</h1>
     </div>
+
     <!-- carousel -->
     <div class="carousel">
       <!-- list item -->
       <div class="list">
+        <?php
+
+        include '../index/dbconnect.inc.php';
+
+        $sql = "SELECT * FROM `photography`";
+        $result = mysqli_query($conn, $sql);
+
+        if (mysqli_num_rows($result) > 0) {
+          while ($row = mysqli_fetch_assoc($result)) {
+
+            $title = htmlspecialchars($row['title']);
+            $location = htmlspecialchars($row['location']);
+            $image = htmlspecialchars($row['image']);
+
+        ?>
+
+            <div div class="item">
+              <img src="<?php echo $image; ?>">
+              <div class="content">
+                <div class="author"><?php echo $title; ?></div>
+                <div class="title"><?php echo $location; ?></div>
+              </div>
+            </div>
+        <?php
+          }
+        } else {
+          mysqli_error($conn);
+        }
+        ?>
         <div class="item">
           <img src="../asset/im1.webp">
           <div class="content">
@@ -446,6 +471,31 @@
       </div>
       <!-- list thumnail -->
       <div class="thumbnail">
+        <?php
+
+        include '../index/dbconnect.inc.php';
+
+        $sql = "SELECT * FROM `photography`";
+        $result = mysqli_query($conn, $sql);
+
+        if (mysqli_num_rows($result) > 0) {
+          while ($row = mysqli_fetch_assoc($result)) {
+
+            $title = htmlspecialchars($row['title']);
+            $location = htmlspecialchars($row['location']);
+            $image = htmlspecialchars($row['image']);
+
+        ?>
+
+            <div class="item">
+              <img src="<?php echo $image; ?>">
+            </div>
+        <?php
+          }
+        } else {
+          mysqli_error($conn);
+        }
+        ?>
         <div class="item">
           <img src="../asset/im1.webp">
         </div>
@@ -539,8 +589,7 @@
                 <div class="svg-wrapper">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
                     <path fill="none" d="M0 0h24v24H0z"></path>
-                    <path fill="currentColor"
-                      d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z">
+                    <path fill="currentColor" d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z">
                     </path>
                   </svg>
                 </div>
