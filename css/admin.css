@@ -25,7 +25,7 @@ body{
     background: #396460;
 }
 .sidebar:hover{
-    width: 240px;
+    width: 270px;
     transition: 0.5s;
 }
 .logo{

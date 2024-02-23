@@ -107,6 +107,29 @@ if (!isset($_SESSION["user"])) {
             background-attachment: fixed;
             background-size: cover;
         }
+
+        .table-container tbody td img {
+            height: 100px;
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 110px;
+            height: 100vh;
+            padding: 0 1.7rem;
+            color: #fff;
+            overflow: hidden;
+            transition: all 0.5s linear;
+            background: #396460;
+        }
+
+        .sidebar:hover {
+            width: 260px;
+            transition: 0.5s;
+        }
     </style>
 </head>
 
@@ -449,8 +472,8 @@ if (!isset($_SESSION["user"])) {
                                 <th>SN</th>
                                 <th>Title</th>
                                 <th>Location</th>
-                                <th>Image</th>                               
-                                <th>Time</th>                               
+                                <th>Image</th>
+                                <th>Time</th>
                                 <th>Operations</th>
                             </tr>
                         </thead>
@@ -468,20 +491,21 @@ if (!isset($_SESSION["user"])) {
                                 while ($row = mysqli_fetch_assoc($result)) {
                                     $id = $row['sn'];
                                     $title = $row['title'];
-                                    $location = $row['location'];                                                                    
+                                    $location = $row['location'];
                                     $image = $row['image'];
-                                    $time = $row['image'];
-
-                                    echo '<tr>
-                                        <th scope="row">' . $id . '</th>
-                                        <td>' . $title . '</td>
-                                        <td>' . $location . '</td>
-                                        <td>' . $image . '</td>
-                                        <td>' . $time . '</td>
-                                        <td>                                   
-                                        <button><a href="../crud/delete_photography.php ? deleteid=' . $id . '">Delete</a> </button>
-                                        </td>           
-                                        </tr>';
+                                    $time = $row['time'];
+                            ?>
+                                    <tr>
+                                        <th scope="row"><?php echo $id; ?></th>
+                                        <td><?php echo $title; ?></td>
+                                        <td><?php echo $location; ?></td>
+                                        <td><img src="<?php echo $image; ?>" alt=""></td>
+                                        <td><?php echo $time; ?></td>
+                                        <td>
+                                            <button><a href="../crud/delete_photography.php?deleteid=<?php echo $id; ?>">Delete</a></button>
+                                        </td>
+                                    </tr>
+                            <?php
                                 }
                             }
                             ?>
