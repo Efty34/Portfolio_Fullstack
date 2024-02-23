@@ -1,0 +1,178 @@
+#contact {
+  margin-top: 5rem;;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 120vh;
+}
+
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 4rem;
+  /* max-width: 800px; */
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.contact-info {
+  background-color: #95aeab;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
+  text-align: center;
+  height: 34rem;
+}
+.contact-me{
+display: flex;
+justify-content: center;
+align-items: center;
+}
+.contact-form {
+  background-color: #95aeab;
+  height: 34rem;
+  width: 30rem;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.contact-info h2, .contact-form h2 {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.contact-info p {
+  margin: 10px 0;
+  color: #ffffff;
+  font-size: 18px;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+  width: calc(100% - 20px);
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+@media screen and (max-width: 600px) {
+  #cotact{
+    margin-top: 2rem;
+  }
+  .container{
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    /* margin-bottom: 3rem; */
+  }
+  .contact-info, .contact-form{
+    height:fit-content ;
+    width: fit-content;
+
+  }
+}
+
+.button-only{
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.btn-con {
+font-family: inherit;
+font-size: 15px;
+background: #396460;
+color: white;
+padding: 0.7em 1em;
+padding-left: 0.9em;
+height: 3.5rem;
+width: 6rem;
+display: flex;
+align-items: center;
+border: none;
+border-radius: 8px;
+overflow: hidden;
+transition: all 0.2s;
+cursor: pointer;
+}
+
+.btn-con span {
+display: block;
+margin-left: 0.3em;
+transition: all 0.3s ease-in-out;
+}
+
+.btn-con svg {
+display: block;
+transform-origin: center center;
+transition: transform 0.3s ease-in-out;
+}
+
+.btn-con:hover .svg-wrapper {
+animation: fly-1 0.6s ease-in-out infinite alternate;
+}
+
+.btn-con:hover svg {
+transform: translateX(1.2em) rotate(45deg) scale(1.1);
+}
+
+.btn-con:hover span {
+transform: translateX(5em);
+}
+
+.btn-con:active {
+transform: scale(0.95);
+}
+
+@keyframes fly-1 {
+from {
+  transform: translateY(0.1em);
+}
+
+to {
+  transform: translateY(-0.1em);
+}
+}
+
+
+.personal-con-info{
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-self: center;
+gap: 2rem;
+}
+.con-info-icon{
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+gap: 4rem;
+}
+.con-info{
+display: flex;
+flex-direction: column;
+gap: 3rem;
+}
+.con-info-icon img{
+display: flex;
+flex-direction: row;
+width: 2rem;
+}

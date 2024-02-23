@@ -1,0 +1,78 @@
+#timelineid {
+  position: relative;
+  margin-bottom: 10rem;
+  padding-top: 6rem;
+  height: 120vh;
+}
+.timeline-area{
+  margin: 30px auto;
+   width: 400px;
+  /* border-left: 2px solid #ccc; */
+  padding: 0 20px 30px 30px;
+  
+}
+.timeline-content{
+  background-color: #c2d5d3;
+  padding: 10px 25px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  line-height: 1.7;
+  position: relative;
+  height: 200px;
+  margin-bottom: 20px;
+}
+
+.timeline-content:before{
+  content: '';
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #396460;
+  border: 3px solid #ddd;
+  position: absolute;
+  top: 10px;
+  left: -40px;
+}
+.timeline-content::after{
+  content: '';
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-color: transparent #ddd transparent transparent;
+  border-width: 8px;
+  position: absolute;
+  left: -17px;
+  top: 10px;
+}
+.image-name{
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  background-color: white;
+}
+.image-name img{
+  height: 50px;
+  border-radius: 50%;
+}
+.image-name h2{
+  margin: 0;
+  text-transform: uppercase;
+  font-family: poppins;
+}
+.timeline-content h3,h4{
+  margin: 0;
+  text-transform: uppercase;
+  font-family: poppins;
+  font-weight: 600;
+  font-size: 14px;
+}
+.timeline-content p{
+  margin: 0;
+  font-family: poppins;
+  font-weight: 200;
+  font-size: 14px;
+}
