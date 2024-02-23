@@ -25,17 +25,57 @@ if (!isset($_SESSION["user"])) {
             padding: 1rem 1rem;
         }
 
+        #about {
+            background-image: url(../asset/aboutbg.jpg);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+
+        #timeline {
+            background-image: url(../asset/timeline.jpg);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+
+        #photography {
+            background-image: url(../asset/cam.jpg);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+        #message{
+            background-image: url(../asset/msg2.jpg);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+
         .timeline-section h2 {
             font-size: 20px;
-            color: #719692;
+            background-color: white;
+            width: 100%;
+            color: black;
+            border-radius: 5px;
         }
 
         .form-container {
-            background-color: transparent;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            /* background-color: transparent; */
+            /* border-radius: 10px; */
+            /* box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); */
             padding: 40px;
             width: 500px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(11.6px);
+            -webkit-backdrop-filter: blur(11.6px);
+            border: 1px solid rgba(255, 255, 255, 0.45);
         }
 
         .form-container h2 {
@@ -129,6 +169,13 @@ if (!isset($_SESSION["user"])) {
         .sidebar:hover {
             width: 260px;
             transition: 0.5s;
+        }
+        .main--title--div{
+            width: 100%;
+            height: 50px;
+            background-color: white;
+            padding-top: 10px;
+            border-radius: 7px;
         }
     </style>
 </head>
@@ -225,8 +272,8 @@ if (!isset($_SESSION["user"])) {
                 <h3 class="main--title">About</h3>
             </div>
             <div class="timeline-section">
-                <h2>Upload Section</h2>
                 <div class="form-container">
+                    <h2>Upload Section</h2>
                     <form action="../include/about.inc.php" method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <!-- <tex type="text" name="bio" required placeholder="Enter Bio"> -->
@@ -298,6 +345,7 @@ if (!isset($_SESSION["user"])) {
             </div>
             <div class="timeline-section">
                 <div class="form-container">
+                    <h2>Upload Section</h2>
                     <form action="../include/timeline.inc.php" method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <!-- <label for="name">University Name:</label> -->
@@ -443,6 +491,7 @@ if (!isset($_SESSION["user"])) {
 
             <div class="timeline-section">
                 <div class="form-container">
+                    <h2>Upload Section</h2>
                     <form action="../include/photography.inc.php" method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <!-- <label for="name">University Name:</label> -->
