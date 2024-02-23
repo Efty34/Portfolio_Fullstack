@@ -1,15 +1,15 @@
 <?php
 
-include './dbconnect.inc.php';
+include '../index/dbconnect.inc.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
-    $name = $_POST['name'];
+    $name = $_POST['uniname'];
     $degree = $_POST['degree'];
     $year = $_POST['year'];
     $description = $_POST['description'];
 
-    $targetDir = "uploads/";
+    $targetDir = "../index/uploads/";
     $targetFile = $targetDir . basename($_FILES["picture"]["name"]);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
@@ -40,6 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 mysqli_stmt_bind_param($stmt, "sssss", $name, $degree, $year, $description, $targetFile);
                 if (mysqli_stmt_execute($stmt)) {
                     echo "<script> alert('Upload successful'); </script>";
+                    header("location:../index/index_admin.php");
                 } else {
                     mysqli_error($conn);
                 }

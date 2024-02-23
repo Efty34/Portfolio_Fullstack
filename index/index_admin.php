@@ -22,17 +22,16 @@ if (!isset($_SESSION["user"])) {
             gap: 1rem;
             justify-content: center;
             align-items: center;
-            padding-top: 2rem;
-            margin-bottom: 2rem;
+            padding: 1rem 1rem;
         }
 
-        .timeline-section h2{
+        .timeline-section h2 {
             font-size: 20px;
             color: #719692;
         }
 
         .form-container {
-            background-color: #fff;
+            background-color: transparent;
             border-radius: 10px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             padding: 40px;
@@ -98,6 +97,15 @@ if (!isset($_SESSION["user"])) {
             padding-left: 10px;
             padding-top: 6px;
             font-size: 16px;
+        }
+
+        .about-bg {
+            background-image: url(../asset/aboutbg2.jpg);
+            height: 100vh;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+            background-size: cover;
         }
     </style>
 </head>
@@ -211,7 +219,6 @@ if (!isset($_SESSION["user"])) {
                     </form>
                 </div>
             </div>
-
             <div class="timeline-section">
                 <h2>Display Section</h2>
                 <div class="table-container">
@@ -243,15 +250,15 @@ if (!isset($_SESSION["user"])) {
                                     $time = $row['time'];
 
                                     echo '<tr>
-                <th scope="row">' . $id . '</th>
-                <td>' . $bio . '</td>
-                <td>' . $picture . '</td>
-                <td>' . $time . '</td>
-                <td>                                   
-                <button><a href="../crud/delete_about.php ? deleteid=' . $id . '">Delete</a> </button>
-                <button><a href="../crud/update_about.php ? updateid=' . $id . '">Update</a> </button>
-                </td>           
-                </tr>';
+                                        <th scope="row">' . $id . '</th>
+                                        <td>' . $bio . '</td>
+                                        <td>' . $picture . '</td>
+                                        <td>' . $time . '</td>
+                                        <td>                                   
+                                        <button><a href="../crud/delete_about.php ? deleteid=' . $id . '">Delete</a> </button>
+                                        <button><a href="../crud/update_about.php ? updateid=' . $id . '">Update</a> </button>
+                                        </td>           
+                                        </tr>';
                                 }
                             }
                             ?>
@@ -271,7 +278,7 @@ if (!isset($_SESSION["user"])) {
                     <form action="../include/timeline.inc.php" method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <!-- <label for="name">University Name:</label> -->
-                            <input type="text" name="name" required placeholder="University Name">
+                            <input type="text" name="uniname" required placeholder="University Name">
                         </div>
                         <div class="form-group">
                             <!-- <label for="email">Degree:</label> -->
@@ -296,6 +303,60 @@ if (!isset($_SESSION["user"])) {
                     </form>
                 </div>
             </div>
+
+            <div class="timeline-section">
+                <h2>Display Section</h2>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>SN</th>
+                                <th>University</th>
+                                <th>Degree</th>
+                                <th>Year</th>
+                                <th>Description</th>
+                                <th>Logo</th>
+                                <th>Operations</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <?php
+
+                            include './dbconnect.inc.php';
+
+                            $sql = "SELECT * FROM `timeline`";
+                            $result = mysqli_query($conn, $sql);
+
+                            if ($result) {
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    $id = $row['sn'];
+                                    $university = $row['university'];
+                                    $degree = $row['degree'];
+                                    $year = $row['year'];
+                                    $description = $row['description'];
+                                    $image = $row['image'];
+
+                                    echo '<tr>
+                                        <th scope="row">' . $id . '</th>
+                                        <td>' . $university . '</td>
+                                        <td>' . $degree . '</td>
+                                        <td>' . $year . '</td>
+                                        <td>' . $description . '</td>
+                                        <td>' . $image . '</td>
+                                        <td>                                   
+                                        <button><a href="../crud/delete_timeline.php ? deleteid=' . $id . '">Delete</a> </button>
+                                        <button><a href="../crud/update_timeline.php ? updateid=' . $id . '">Update</a> </button>
+                                        </td>           
+                                        </tr>';
+                                }
+                            }
+                            ?>
+                        </tbody>
+
+                    </table>
+                </div>
 
         </section>
 
