@@ -187,7 +187,7 @@
       }
       ?>
 
-      <div class="timeline-content hidden2">
+      <!-- <div class="timeline-content hidden2">
         <div class="image-name">
           <img src="../asset/kuet2.png" alt="">
           <h2>KUET</h2>
@@ -195,7 +195,7 @@
         <h3>BSC</h3>
         <h4>2020-</h4>
         <p>I am progressing towards my undergraduation degree in CSE.</p>
-      </div>
+      </div> -->
 
       <div class="timeline-content hidden2">
         <div class="image-name">
