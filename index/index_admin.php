@@ -307,9 +307,10 @@ if (!isset($_SESSION["user"])) {
         <ul class="menu">
 
             <li class="active">
-                <a href="#">
-                    <i class='bx bxs-dashboard'></i>
-                    <span>Dashboard</span>
+                <a href="./index.php">
+                    <i class='bx bxs-home'></i>
+                    <span>Homepage</span>
+
                 </a>
             </li>
 
@@ -352,14 +353,6 @@ if (!isset($_SESSION["user"])) {
                 <a href="#message">
                     <i class='bx bxs-message-dots'></i>
                     <span>Message</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="./index.php">
-                    <i class='bx bxs-home'></i>
-                    <span>Homepage</span>
-
                 </a>
             </li>
 
