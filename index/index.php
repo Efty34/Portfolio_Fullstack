@@ -168,7 +168,24 @@
     <div class="section_text hidden3">
       <p class="section_text_p1">Hello, I'm</p>
       <h1 class="title">Efty <span id="logo-span">Hasan</span></h1>
-      <p class="section_text_p2">Student</p>
+
+      <?php
+
+      include '../index/dbconnect.inc.php';
+
+      $sql = "SELECT * FROM `profile`";
+      $result = mysqli_query($conn, $sql);
+
+      if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+
+          $status = htmlspecialchars($row['status']);
+      ?>
+          <p class="section_text_p2"><?php echo $status; ?></p>
+      <?php
+        }
+      }
+      ?>
       <div class="btn-container">
         <button class="button" onclick="window.open('../asset/resume-example.pdf')">
           Download CV

@@ -181,7 +181,7 @@ if (isset($_POST['submit'])) {
                     <input type="file" id="picture" name="picture" accept="image/*" required value="<?php echo $picture; ?>">
                 </div>
                 <div class="form-group">
-                    <input type="submit" name="submit" value="Upload">
+                    <input type="submit" name="submit" value="Update">
                 </div>
             </form>
         </div>

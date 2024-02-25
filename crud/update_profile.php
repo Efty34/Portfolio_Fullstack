@@ -4,7 +4,7 @@ include '../index/dbconnect.inc.php';
 if (isset($_GET['updateid']) && is_numeric($_GET['updateid'])) {
     $id = $_GET['updateid'];
 
-    $sql = "SELECT * FROM `expertise` WHERE `sn`=?";
+    $sql = "SELECT * FROM `profile` WHERE `sn`=?";
     $stmt = mysqli_prepare($conn, $sql);
     mysqli_stmt_bind_param($stmt, "i", $id);
     mysqli_stmt_execute($stmt);
@@ -12,13 +12,7 @@ if (isset($_GET['updateid']) && is_numeric($_GET['updateid'])) {
     
     $row = mysqli_fetch_assoc($result);
     if ($row) {
-        $title = $row['title'];
-        $subtitle = $row['subtitle'];
-        $a = $row['a'];
-        $b = $row['b'];
-        $c = $row['c'];
-        $d = $row['d'];
-        $e = $row['e'];
+        $status = $row['status'];
     } else {
         exit;
     }
@@ -27,17 +21,11 @@ if (isset($_GET['updateid']) && is_numeric($_GET['updateid'])) {
 }
 
 if (isset($_POST['submit'])) {
-    $title = $_POST['title'];
-    $subtitle = $_POST['subtitle'];
-    $a = $_POST['a'];
-    $b = $_POST['b'];
-    $c = $_POST['c'];
-    $d = $_POST['d'];
-    $e = $_POST['e'];
+    $status = $_POST['status'];
 
-    $sql = "UPDATE `expertise` SET `title`=?, `subtitle`=?, `a`=?, `b`=?, `c`=?, `d`=?, `e`=? WHERE `sn`=?";
+    $sql = "UPDATE `profile` SET `status`=? WHERE `sn`=?";
     $stmt = mysqli_prepare($conn, $sql);
-    mysqli_stmt_bind_param($stmt, "sssssssi", $title, $subtitle, $a, $b, $c, $d, $e, $id);
+    mysqli_stmt_bind_param($stmt, "si", $status, $id);
     $result = mysqli_stmt_execute($stmt);
 
     if ($result) {
@@ -171,25 +159,7 @@ if (isset($_POST['submit'])) {
             <h3>Update Experience</h3>
             <form method="post" enctype="multipart/form-data">
                 <div class="form-group">
-                    <input type="text" name="title" required placeholder="Title" value="<?php echo $title; ?>">
-                </div>
-                <div class="form-group">
-                    <input type="text" name="subtitle" required placeholder="sub" value="<?php echo $subtitle; ?>">
-                </div>
-                <div class="form-group">
-                    <input type="text" name="a" required required placeholder="a" value="<?php echo $a; ?>">
-                </div>
-                <div class="form-group">
-                    <input type="text" name="b" required required placeholder="b" value="<?php echo $b; ?>">
-                </div>
-                <div class="form-group">
-                    <input type="text" name="c" required required placeholder="c" value="<?php echo $c; ?>">
-                </div>
-                <div class="form-group">
-                    <input type="text" name="d" required required placeholder="d" value="<?php echo $d; ?>">
-                </div>
-                <div class="form-group">
-                    <input type="text" name="e" required required placeholder="e" value="<?php echo $e; ?>">
+                    <input type="text" name="status" required placeholder="Title" value="<?php echo $status; ?>">
                 </div>
                 <div class="form-group">
                     <input type="submit" name="submit" value="Update">
