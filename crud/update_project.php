@@ -172,7 +172,7 @@ if (isset($_POST['submit'])) {
     <div class="update-picture"></div>
     <div class="timeline-section">
         <div class="form-container">
-            <h3>Update Timeline</h3>
+            <h3>Update Project</h3>
             <form method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <input type="text" name="field" required placeholder="Project Field" value="<?php echo $field; ?>">

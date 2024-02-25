@@ -24,6 +24,79 @@
     .nav__item a {
       color: black;
     }
+
+    .card3 {
+      color: white;
+      width: 20rem;
+      height: 28rem;
+      position: relative;
+      border: 4px solid #396460;
+      border-radius: 8px;
+      line-height: 150%;
+      padding: 16px;
+      background: linear-gradient(to bottom, #5c8984, #c2dedc);
+      transition: background-color 1s ease-in-out;
+      overflow: hidden;
+    }
+
+    .card-front {
+      top: 30%;
+      left: 0;
+      position: absolute;
+      width: 100%;
+      text-align: center;
+      transition: transform 1s cubic-bezier(0.785, 0.135, 0.150, 0.860);
+    }
+
+
+    .card-back {
+      padding-top: 2rem;
+      padding-left: 2rem;
+      transform: translateX(120%);
+      transition: transform 1s cubic-bezier(0.785, 0.135, 0.150, 0.860);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .card-back p {
+      color: white;
+      font-size: 25px;
+
+    }
+
+    .card-back i {
+      margin-right: 5px;
+      font-size: 25px;
+
+
+    }
+
+
+    /*Text*/
+    .titlee {
+      color: white;
+      font-size: 1.3rem;
+      font-weight: bold;
+    }
+
+    .subtitle {
+      color: white;
+
+    }
+
+    /*Hover*/
+    .card3:hover {
+      background-color: #1b1b1b25;
+    }
+
+    .card3:hover .card-front {
+      transform: translateX(-100%);
+    }
+
+    .card3:hover .card-back {
+      transform: translateX(0);
+    }
   </style>
 
 </head>
@@ -235,110 +308,46 @@
     <div class="experience-details-container">
       <div class="about-containers">
 
+        <?php
 
-        <div class="card-container">
-          <div class="card">
-            <div class="front-content">
-              <p>Programming <br> Languages</p>
-            </div>
-            <div class="content">
-              <p class="heading">Name</p>
-              <p>
-              <article>
-                <img src="../asset/checkmark.png" alt="Experience icon" class="icon" />
-                <div>
-                  <h3>C</h3>
-                  <p>Experience</p>
-                </div>
-              </article>
-              <article>
-                <img src="../asset/checkmark.png" alt="Experience icon" class="icon" />
-                <div>
-                  <h3>C++</h3>
-                  <p>Experience</p>
-                </div>
-              </article>
-              <article>
-                <img src="../asset/checkmark.png" alt="Experience icon" class="icon" />
-                <div>
-                  <h3>Java</h3>
-                  <p>Experience</p>
-                </div>
-              </article>
-              </p>
-            </div>
-          </div>
-        </div>
+        include '../index/dbconnect.inc.php';
 
-        <div class="card-container">
-          <div class="card">
-            <div class="front-content">
-              <p>Frontend <br> Development</p>
-            </div>
-            <div class="content">
-              <p class="heading">Platform</p>
-              <p>
-              <article>
-                <img src="../asset/checkmark.png" alt="Experience icon" class="icon" />
-                <div>
-                  <h3>HTML</h3>
-                  <p>Intermediate</p>
-                </div>
-              </article>
-              <article>
-                <img src="../asset/checkmark.png" alt="Experience icon" class="icon" />
-                <div>
-                  <h3>CSS</h3>
-                  <p>Intermediate</p>
-                </div>
-              </article>
-              <article>
-                <img src="../asset/checkmark.png" alt="Experience icon" class="icon" />
-                <div>
-                  <h3>JavaScript</h3>
-                  <p>Basic</p>
-                </div>
-              </article>
-              </p>
-            </div>
-          </div>
-        </div>
+        $sql = "SELECT * FROM `expertise`";
+        $result = mysqli_query($conn, $sql);
 
+        if (mysqli_num_rows($result) > 0) {
+          while ($row = mysqli_fetch_assoc($result)) {
 
+            $title = htmlspecialchars($row['title']);
+            $subtitle = htmlspecialchars($row['subtitle']);
+            $a = htmlspecialchars($row['a']);
+            $b = htmlspecialchars($row['b']);
+            $c = htmlspecialchars($row['c']);
+            $d = htmlspecialchars($row['d']);
+            $e = htmlspecialchars($row['e']);
 
-        <div class="card-container">
-          <div class="card">
-            <div class="front-content">
-              <p>Backend <br> Development</p>
+        ?>
+
+            <div class="card-container">
+              <div class="card3">
+                <div class="card-front">
+                  <p class="titlee"><?php echo $title; ?></p>
+                  <p class="subtitle"><?php echo $subtitle; ?></p>
+                </div>
+                <div class="card-back">
+                  <p><i class='bx bxs-check-circle'></i><?php echo $a; ?></p>
+                  <p><i class='bx bxs-check-circle'></i><?php echo $b; ?></p>
+                  <p><i class='bx bxs-check-circle'></i><?php echo $c; ?></p>
+                  <p><i class='bx bxs-check-circle'></i><?php echo $d; ?></p>
+                  <p><i class='bx bxs-check-circle'></i><?php echo $e; ?></p>
+                </div>
+              </div>
             </div>
-            <div class="content">
-              <p class="heading">Platform</p>
-              <p>
-              <article>
-                <img src="../asset/checkmark.png" alt="Experience icon" class="icon" />
-                <div>
-                  <h3>SQL</h3>
-                  <p>Basic</p>
-                </div>
-              </article>
-              <article>
-                <img src="../asset/checkmark.png" alt="Experience icon" class="icon" />
-                <div>
-                  <h3>PHP</h3>
-                  <p>Basic</p>
-                </div>
-              </article>
-              <article>
-                <img src="../asset/checkmark.png" alt="Experience icon" class="icon" />
-                <div>
-                  <h3>Git</h3>
-                  <p>Basic</p>
-                </div>
-              </article>
-              </p>
-            </div>
-          </div>
-        </div>
+        <?php
+          }
+        }
+        ?>
+
       </div>
     </div>
   </section>

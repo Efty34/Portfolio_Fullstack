@@ -3,51 +3,53 @@ include '../index/dbconnect.inc.php';
 
 if (isset($_GET['updateid']) && is_numeric($_GET['updateid'])) {
     $id = $_GET['updateid'];
+
+    $sql = "SELECT * FROM `expertise` WHERE `sn`=?";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "i", $id);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    
+    $row = mysqli_fetch_assoc($result);
+    if ($row) {
+        $title = $row['title'];
+        $subtitle = $row['subtitle'];
+        $a = $row['a'];
+        $b = $row['b'];
+        $c = $row['c'];
+        $d = $row['d'];
+        $e = $row['e'];
+    } else {
+        exit;
+    }
 } else {
-    exit("Invalid or missing updateid");
+    exit;
 }
-
-$sql = "SELECT * FROM `photography` where sn=?";
-$stmt = mysqli_prepare($conn, $sql);
-mysqli_stmt_bind_param($stmt, "i", $id);
-mysqli_stmt_execute($stmt);
-$result = mysqli_stmt_get_result($stmt);
-$row = mysqli_fetch_assoc($result);
-
-$title = $row['title'];
-$location = $row['location'];
-$picture = $row['image'];
 
 if (isset($_POST['submit'])) {
     $title = $_POST['title'];
-    $location = $_POST['location'];
+    $subtitle = $_POST['subtitle'];
+    $a = $_POST['a'];
+    $b = $_POST['b'];
+    $c = $_POST['c'];
+    $d = $_POST['d'];
+    $e = $_POST['e'];
 
-    if ($_FILES['picture']['error'] === UPLOAD_ERR_OK) {
-        $target_dir = "../crud/update/";
-        $targetFile = $target_dir . basename($_FILES["picture"]["name"]);
+    $sql = "UPDATE `expertise` SET `title`=?, `subtitle`=?, `a`=?, `b`=?, `c`=?, `d`=?, `e`=? WHERE `sn`=?";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "sssssssi", $title, $subtitle, $a, $b, $c, $d, $e, $id);
+    $result = mysqli_stmt_execute($stmt);
 
-        if (move_uploaded_file($_FILES['picture']['tmp_name'], $targetFile)) {
-            $sql = "UPDATE `photography` SET `title`=?,`location`=?, `image`=? WHERE `sn`=?";
-            $stmt = mysqli_prepare($conn, $sql);
-            mysqli_stmt_bind_param($stmt, "sssi", $title, $location,$targetFile, $id);
-            $result = mysqli_stmt_execute($stmt);
-            if ($result) {
-                header("location:../index/index_admin.php");
-                exit;
-            } else {
-                mysqli_error($conn);
-            }
-        } else {
-            // echo "Sorry, there was an error uploading your file.";
-            echo "<script> alert('Sorry, there was an error uploading your file.'); </script>";
-        }
+    if ($result) {
+        header("location:../index/index_admin.php");
+        exit;
     } else {
-        // echo "No file uploaded or an upload error occurred.";
-        echo "<script> alert('No file uploaded or an upload error occurred.'); </script>";
+        die(mysqli_error($conn));
     }
 }
-
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -70,7 +72,7 @@ if (isset($_POST['submit'])) {
             /* padding-top: 7%; */
             position: absolute;
             position: absolute;
-            top: 45%;
+            top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             z-index: 2;
@@ -166,19 +168,28 @@ if (isset($_POST['submit'])) {
     <div class="update-picture"></div>
     <div class="timeline-section">
         <div class="form-container">
-            <h2>Update Section</h2>
+            <h3>Update Experience</h3>
             <form method="post" enctype="multipart/form-data">
                 <div class="form-group">
-                    <!-- <label for="name">University Name:</label> -->
-                    <input type="text" name="title" required placeholder="Tile" value="<?php echo $title; ?>">
+                    <input type="text" name="title" required placeholder="Title" value="<?php echo $title; ?>">
                 </div>
                 <div class="form-group">
-                    <!-- <label for="email">Degree:</label> -->
-                    <input type="text" name="location" required placeholder="Location" value="<?php echo $location; ?>">
+                    <input type="text" name="subtitle" required placeholder="sub" value="<?php echo $subtitle; ?>">
                 </div>
                 <div class="form-group">
-                    <label for="picture">Upload Images:</label>
-                    <input type="file" id="picture" name="picture" accept="image/*" required value="<?php echo $picture; ?>">
+                    <input type="text" name="a" required required placeholder="a" value="<?php echo $a; ?>">
+                </div>
+                <div class="form-group">
+                    <input type="text" name="b" required required placeholder="b" value="<?php echo $b; ?>">
+                </div>
+                <div class="form-group">
+                    <input type="text" name="c" required required placeholder="c" value="<?php echo $c; ?>">
+                </div>
+                <div class="form-group">
+                    <input type="text" name="d" required required placeholder="d" value="<?php echo $d; ?>">
+                </div>
+                <div class="form-group">
+                    <input type="text" name="e" required required placeholder="e" value="<?php echo $e; ?>">
                 </div>
                 <div class="form-group">
                     <input type="submit" name="submit" value="Upload">
