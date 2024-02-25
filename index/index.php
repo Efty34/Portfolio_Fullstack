@@ -20,6 +20,12 @@
   <link rel="stylesheet" href="../css/styles.css">
   <link rel="stylesheet" href="../css/scroll.css">
 
+  <style>
+    .nav__item a {
+      color: black;
+    }
+  </style>
+
 </head>
 
 <body>
@@ -74,7 +80,7 @@
               </a>
             </li>
             <li class="nav__item">
-              <a href="#contact" class="nav__link">
+              <a href="./index_login.php" class="nav__link">
                 <i class='bx bx-cog nav__icon'></i>
                 <a href="./index_login.php"><span class="nav__name">Admin</span></a>
               </a>
@@ -344,6 +350,49 @@
       <div class="about-containers hidden">
 
         <div class="cards">
+
+          <?php
+
+          include '../index/dbconnect.inc.php';
+
+          $sql = "SELECT * FROM `project`";
+          $result = mysqli_query($conn, $sql);
+
+          if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+
+              $field = htmlspecialchars($row['field']);
+              $title = htmlspecialchars($row['title']);
+              $gitlink = htmlspecialchars($row['gitlink']);
+              $livedemo = htmlspecialchars($row['livedemo']);
+              $picture = htmlspecialchars($row['picture']);
+
+          ?>
+              <div class="card red">
+                <div class="details-container color-container hidden">
+                  <h2 class="experience-sub-title project-title"><?php echo $field; ?></h2>
+                  <div class="article-container">
+                    <img src="<?php echo $picture; ?>" alt="Project 1" class="project-img" />
+                  </div>
+                  <h2 class="experience-sub-title project-title">Title: <?php echo $title; ?></h2>
+                  <div class="btn-container">
+                    <button class="project-btn" onclick="location.href='<?php echo $gitlink; ?>'">
+                      Github
+                    </button>
+                    <button class="project-btn" onclick="location.href='<?php echo $livedemo; ?>'">
+
+                      Live Demo
+                    </button>
+                  </div>
+                </div>
+              </div>
+          <?php
+            }
+          } else {
+            mysqli_error($conn);
+          }
+          ?>
+
           <div class="card red">
             <div class="details-container color-container hidden">
               <h2 class="experience-sub-title project-title">OOP Project</h2>
