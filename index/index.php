@@ -21,6 +21,9 @@
   <link rel="stylesheet" href="../css/scroll.css">
 
   <style>
+    html{
+            scroll-behavior: smooth;
+        }
     .nav__item a {
       color: black;
     }
@@ -129,7 +132,7 @@
             <li class="nav__item">
               <a href="#experience" class="nav__link">
                 <i class='bx bx-book-alt nav__icon'></i>
-                <span class="nav__name">Experience</span>
+                <span class="nav__name">Expertise</span>
               </a>
             </li>
 

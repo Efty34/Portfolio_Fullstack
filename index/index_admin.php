@@ -16,6 +16,9 @@ if (!isset($_SESSION["user"])) {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 
     <style>
+        html{
+            scroll-behavior: smooth;
+        }
         .timeline-section {
             display: flex;
             flex-direction: column;
@@ -488,7 +491,7 @@ if (!isset($_SESSION["user"])) {
                         <h2>Upload Section</h2>
                         <form action="../include/profile.inc.php" method="post" enctype="multipart/form-data">
                             <div class="form-group">
-                                <input type="text" name="status" placeholder="Status"  required>
+                                <input type="text" name="status" placeholder="Status" required>
                             </div>
 
                             <div class="form-group">
@@ -505,8 +508,8 @@ if (!isset($_SESSION["user"])) {
                         <thead>
                             <tr>
                                 <th>SN</th>
-                                <th>Status</th>                           
-                                <th>Operations</th>                           
+                                <th>Status</th>
+                                <th>Operations</th>
                             </tr>
                         </thead>
 
@@ -522,11 +525,11 @@ if (!isset($_SESSION["user"])) {
                             if ($result) {
                                 while ($row = mysqli_fetch_assoc($result)) {
                                     $id = $row['sn'];
-                                    $status = $row['status'];                                    
+                                    $status = $row['status'];
                             ?>
                                     <tr>
                                         <th scope="row"><?php echo $id; ?></th>
-                                        <td><?php echo $status; ?></td>                                       
+                                        <td><?php echo $status; ?></td>
                                         <td>
                                             <div class="table-btn-container">
                                                 <button class="button">
