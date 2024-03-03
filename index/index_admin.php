@@ -1000,7 +1000,7 @@ if (!isset($_SESSION["user"])) {
                                 <th>Field</th>
                                 <th>Title</th>
                                 <th>GitHub Link</th>
-                                <th>Live Demo</th>
+                                <!-- <th>Live Demo</th> -->
                                 <th>Picture</th>
                                 <th>Operations</th>
                                 <!-- <th>Time</th> -->
@@ -1015,7 +1015,7 @@ if (!isset($_SESSION["user"])) {
 
                             $sql = "SELECT * FROM `project`";
                             $result = mysqli_query($conn, $sql);
-
+                            // echo $livedemo;
                             if ($result) {
                                 while ($row = mysqli_fetch_assoc($result)) {
                                     $id = $row['sn'];
@@ -1031,7 +1031,7 @@ if (!isset($_SESSION["user"])) {
                                         <td><?php echo $field; ?></td>
                                         <td><?php echo $title; ?></td>
                                         <td><?php echo $gitlink; ?></td>
-                                        <td><?php echo $livedemo; ?></td>
+
                                         <td><img src="<?php echo $image; ?>" alt=""></td>
 
                                         <td>
